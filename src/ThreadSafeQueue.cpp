@@ -1,0 +1,27 @@
+#include "ThreadSafeQueue.h"
+
+
+ThreadSafeQueue::getMessage() {
+    return this->pop();
+};
+
+void ThreadSafeQueue::pushMessage(QueueMessage message) {
+    this->push(message);
+};
+
+QueueMessage ThreadSafeQueue::pop() {
+    std::unique_lock<std::mutex> lock(m_Mutex);
+
+    m_Cv.wait(lock,[] { return !m_Queue.empty(); });
+
+    QueueMessage message = m_Queue.top();
+    m_Queue.pop();
+    return message;
+}
+
+void ThreadSafeQueue::push(QueueMessage message) {
+    std::unique_lock<std::mutex> lock(m_Mutex);
+    m_Queue.push(message);
+    m_Cv.notify_one();
+}
+
