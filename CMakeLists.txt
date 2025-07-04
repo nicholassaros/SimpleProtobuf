@@ -13,6 +13,9 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 # Define executable
 add_executable(SimpleProtobuf
     src/main.cpp
+    src/ThreadSafeQueue.cpp
+    src/ProducerManager.cpp
+    src/Producer.cpp
     src/QueueMessage.pb.cc
 )
 

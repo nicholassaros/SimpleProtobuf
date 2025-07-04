@@ -12,6 +12,8 @@ class ThreadSafeQueue {
     public:
         ThreadSafeQueue();
 
+        ~ThreadSafeQueue();
+
         QueueMessage getMessage();
         
         void pushMessage(QueueMessage message);
@@ -25,5 +27,5 @@ class ThreadSafeQueue {
         void push(QueueMessage message);
 
 
-}
+};
 #endif
