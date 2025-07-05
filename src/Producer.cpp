@@ -4,7 +4,7 @@
 
 
 Producer::Producer(std::shared_ptr<ThreadSafeQueue> threadSafeQueue, int id) 
-  : m_ThreadSafeQueue(threadSafeQueue), m_StopFlag(false), m_Id(id) {
+  : m_ThreadSafeQueue(threadSafeQueue), m_StopFlag(false), m_Id(id), m_Name("[PRODUCER " + std::to_string(id) + "] ") {
 
 };
 
@@ -16,8 +16,9 @@ void Producer::produce() {
     while(!m_StopFlag.load()) {
         QueueMessage message = this->generateData();
         this->pushDataToQueue(message);
+        std::cout << m_Name << "Pushing data ..." << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::seconds(10));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 };
 

@@ -16,6 +16,8 @@ add_executable(SimpleProtobuf
     src/ThreadSafeQueue.cpp
     src/ProducerManager.cpp
     src/Producer.cpp
+    src/ConsumerManager.cpp
+    src/Consumer.cpp
     src/QueueMessage.pb.cc
 )
 

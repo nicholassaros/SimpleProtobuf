@@ -17,12 +17,17 @@ class ThreadSafeQueue {
         QueueMessage getMessage();
         
         void pushMessage(QueueMessage message);
+
+        int getSize();
+
     private:
         std::queue<QueueMessage>    m_Queue;
         std::mutex                  m_Mutex;
         std::condition_variable     m_Cv;
 
         QueueMessage pop();
+
+        int getQueueSize();
 
         void push(QueueMessage message);
 

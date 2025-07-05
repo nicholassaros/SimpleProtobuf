@@ -8,6 +8,7 @@ ProducerData::ProducerData(std::shared_ptr<Producer> producer, std::thread produ
 
 ProducerManager::ProducerManager(std::shared_ptr<ThreadSafeQueue> threadSafeQueue, int producerCount) 
   : m_ThreadSafeQueue(threadSafeQueue), m_ProducerCount(producerCount) {
+    std::cout << "Starting ProducerManager ..." << std::endl;
 
     for(int i = 0 ; i<producerCount; i++) {
         std::shared_ptr<Producer> producer = std::make_shared<Producer>(m_ThreadSafeQueue, i);

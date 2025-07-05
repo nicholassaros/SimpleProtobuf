@@ -1,18 +1,17 @@
-#ifndef PRODUCER
-#define PRODUCER
+#ifndef CONSUMER
+#define CONSUMER
 
 #include "ThreadSafeQueue.h"
 
 #include <iostream>
 
-
-class Producer {
+class Consumer {
     public:
-        Producer(std::shared_ptr<ThreadSafeQueue>, int);
+        Consumer(std::shared_ptr<ThreadSafeQueue>, int);
 
-        ~Producer();
+        ~Consumer();
 
-        void produce();
+        void consume();
 
         void stop();
 
@@ -24,9 +23,9 @@ class Producer {
         std::string                         m_Name;
         int                                 m_Id;
 
-        void pushDataToQueue(QueueMessage message);
+        std::string getDataFromQueue();
 
-        QueueMessage generateData();
+        std::string parseData(QueueMessage);
 };
 
 #endif
